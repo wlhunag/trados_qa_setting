@@ -31,6 +31,7 @@ angular.module('todoApp', [])
             var index =0;
             angular.forEach($scope.fsource, function (item) {
                 // Sample usage.
+                item = escapeXml(item);
                 var str = '<Setting Id="WrongWordPairs' + index +'"><WrongWordDef xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Sdl.Verification.QAChecker"><CorrectWord>{1}</CorrectWord><WrongWord>{0}</WrongWord><_CorrectWord>{1}</_CorrectWord><_WrongWord>{0}</_WrongWord></WrongWordDef></Setting>';
                 str = str.format(item.split('\t'));
                 $scope.result +=str;
@@ -42,6 +43,18 @@ angular.module('todoApp', [])
         $scope.download=  function(){
             var file = new File([prestring + $scope.result + poststring], "錯別字.sdlqasettings", {type: "text/plain;charset=utf-8"});
             saveAs(file);
+        }
+
+        function escapeXml(unsafe) {
+            return unsafe.replace(/[<>&'"]/g, function (c) {
+                switch (c) {
+                    case '<': return '&lt;';
+                    case '>': return '&gt;';
+                    case '&': return '&amp;';
+                    case '\'': return '&apos;';
+                    case '"': return '&quot;';
+                }
+            });
         }
 
 
