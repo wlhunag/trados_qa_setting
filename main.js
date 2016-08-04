@@ -31,7 +31,7 @@ angular.module('todoApp', [])
             var index =0;
             angular.forEach($scope.fsource, function (item) {
                 // Sample usage.
-                var str = '<Setting Id="WrongWordPairs' + index +'"><WrongWordDef xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Sdl.Verification.QAChecker"><CorrectWord>{0}</CorrectWord><WrongWord>{1}</WrongWord><_CorrectWord>{0}</_CorrectWord><_WrongWord>{1}</_WrongWord></WrongWordDef></Setting>';
+                var str = '<Setting Id="WrongWordPairs' + index +'"><WrongWordDef xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Sdl.Verification.QAChecker"><CorrectWord>{1}</CorrectWord><WrongWord>{0}</WrongWord><_CorrectWord>{1}</_CorrectWord><_WrongWord>{0}</_WrongWord></WrongWordDef></Setting>';
                 str = str.format(item.split('\t'));
                 $scope.result +=str;
                 index +=1;
